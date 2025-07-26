@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center p-4">
 
     <div className="container max-w-4xl mx-auto text-center z-10">
-        <div className="grid grid-cols-[2fr_1fr]">
+        <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr]">
             <div className="space-y-6 ">
                 <h1 className="text-2xl md:text-4xl font-bold tracking-tight">
                     <span className="opacity-0 animate-fade-in">Hi, I'm </span>
@@ -24,7 +24,7 @@ export const HeroSection = () => {
                 
             </div>
 
-            <div>
+            <div className="hidden sm:block">
                 <img className="scale-200" src="/projects/profile_pic.png" alt="" />
             </div>
         </div>
