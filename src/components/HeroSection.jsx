@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center p-4">
 
     <div className="container max-w-4xl mx-auto text-center z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr]">
+        <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-10">
             <div className="space-y-6 ">
                 <h1 className="text-2xl md:text-4xl font-bold tracking-tight">
                     <span className="opacity-0 animate-fade-in">Hi, I'm </span>
@@ -14,7 +14,7 @@ export const HeroSection = () => {
                 </h1>
 
                 <p className="text-lg md:text-lg text-muted-foreground max-w-4xl mx-auto opacity-0 animate-fade-in-delay-3">
-                    I specialize in both frontend and backend development, turning ideas into interactive experiences with modern tools and technologies. Whether it’s crafting responsive interfaces or designing robust APIs, I enjoy solving real-world problems through code.
+                    I specialize in both frontend and backend development, turning ideas into interactive experiences with modern tools and technologies.
                 </p>
                 <div className="pt-4 opacity-0 animate-fade-in-delay-4">
                     <a href="#projects" className="cosmic-button">
@@ -25,7 +25,7 @@ export const HeroSection = () => {
             </div>
 
             <div className="hidden sm:block">
-                <img className="scale-200" src="/projects/profile_pic.png" alt="" />
+                <img className="rounded-full" src="/projects/profile_pic2.jpg" alt="" />
             </div>
         </div>
     </div>

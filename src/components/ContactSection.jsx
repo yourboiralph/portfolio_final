@@ -1,8 +1,22 @@
 import { Facebook, Linkedin, Mail, MapPin, Phone, Send, Twitch, Twitter } from "lucide-react"
 import {cn} from "@/lib/utils"
+import emailjs from "@emailjs/browser"
+import { useRef, useState } from "react"
+import { toast } from "react-toastify"
 
 export const ContactSection = () => {
 
+    const formValues = useRef()
+
+    const SendEmail = (e) => {
+        e.preventDefault()
+        emailjs.sendForm("service_gkv6eni", "template_pk02hga", formValues.current, "2OJBubeCgbwMP8NUd").then(()=>{
+            toast.success("Message sent!")
+            formValues.current.reset()
+        },(error)=>{
+            toast.error(error)
+        })
+    }
     return <section id="contact" className="py-24 px-4 relative bg-secondary/30">
         <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Get In <span className="text-primary">Touch</span></h2>
@@ -53,18 +67,11 @@ export const ContactSection = () => {
                     <div className="pt-8">
                         <h4 className="font-medium mb-4">Connect With Me</h4>
                         <div className="flex space-x-4 justify-center">
-                            <a>
-                                <Linkedin />
-                            </a>
-                            <a>
-                                <Twitter />
-                            </a>
-                            <a>
+                            
+                            <a target="_blank" href="https://www.facebook.com/Skylir01">
                                 <Facebook />
                             </a>
-                            <a>
-                                <Twitch />
-                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -72,7 +79,7 @@ export const ContactSection = () => {
                 <div className="bg-card p-8 rounded-lg shadow-xs">
                     <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" ref={formValues} onSubmit={SendEmail}>
                         <div>
                             <label htmlFor="name" className="block text-left text-sm font-medium mb-2">Your Name</label>
                             <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="Ralph Hernandez" />

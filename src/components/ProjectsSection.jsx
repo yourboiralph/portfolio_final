@@ -7,8 +7,7 @@ const projects = [
         description: "A Full-stack E-commerce with Admin Panel.",
         image: "/projects/image7.png",
         tags: ["React", "TailwindCSS", "Express", "MongoDB"],
-        demoUrl: "#",
-        githubUrl: "#"
+        demoUrl: "https://forever-frontend-rust-eta.vercel.app/",
     },
     {
         id: 2,
@@ -16,8 +15,7 @@ const projects = [
         description: "A 3-way system for managing Social Media Maketing Team, Graphics Designer Team, Website Developers Team",
         image: "/projects/image2.png",
         tags: ["Laravel", "Laravel Blade", "TailwindCSS"],
-        demoUrl: "#",
-        githubUrl: "#"
+        demoUrl: "https://rwebsystem.rwebserver.com/",
     },
 
 ]
@@ -33,7 +31,7 @@ export const ProjectsSection = () => {
                 crafted with attention to detail, performance, and user experience.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 {projects.map((project, key) => (
                     <div key={key} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover">
                         <div className="h-48 overflow-hidden">
@@ -54,11 +52,8 @@ export const ProjectsSection = () => {
                             </p>
                             <div className="flex justify-between items-center relative">
                                     <div className="flex space-x-3">
-                                        <a href={project.demoUrl} className="text-foreground/80 hover:text-primary transition-colors duration-300">
+                                        <a target="_blank" href={project.demoUrl} className="text-foreground/80 hover:text-primary transition-colors duration-300">
                                             <ExternalLink size={20} />
-                                        </a>
-                                        <a href={project.githubUrl} className="text-foreground/80 hover:text-primary transition-colors duration-300">
-                                            <Github size={20} />
                                         </a>
                                     </div>
                             </div>
