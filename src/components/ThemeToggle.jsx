@@ -4,26 +4,31 @@ import {cn} from "@/lib/utils"
 
 export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  useEffect(()=>{
-    const storedTheme = localStorage.getItem('theme')
-    console.log(storedTheme)
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+
     if (storedTheme === "light") {
-        setIsDarkMode(false)
-        document.documentElement.classList.add("light")
+      setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
     } else {
-        setIsDarkMode(true);
-        localStorage.setItem('theme', 'dark')
+      setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add("dark"); // <- You were missing this
+      document.documentElement.classList.remove("light");
     }
-  },[])
+  }, []);
   const toggleTheme = () => {
     if (isDarkMode) {
       setIsDarkMode(false);
-      localStorage.setItem('theme', 'light')
-      document.documentElement.classList.remove("dark")
+      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
     } else {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem('theme', 'dark')
       setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     }
   };
 
