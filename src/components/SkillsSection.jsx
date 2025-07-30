@@ -1,5 +1,9 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {cn} from "@/lib/utils"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
     {name: "JavaScript", level: 95, category: "Frontend"},
@@ -17,7 +21,31 @@ const skills = [
 
 const categories = ["all", "Frontend", "Backend", "Tools"]
 
+
+
 export const SkillsSection = () => {
+    const skillsRef = useRef(null)
+
+    useEffect(()=> {
+        const skillsRefVar = skillsRef.current
+
+        gsap.fromTo(skillsRefVar,
+            { y: -100,opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: skillsRefVar,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        )
+        
+    }, [])
+
     const [activeCategory, setActiveCategory] = useState("all")
     const filteredSkills = skills.filter((skill) => activeCategory === "all" || skill.category === activeCategory )
     return <section id="skills" className="py-24 px-4 relative bg-secondary/30">
@@ -34,9 +62,9 @@ export const SkillsSection = () => {
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" ref={skillsRef}>
                 {filteredSkills.map((skill, key) => (
-                    <div key={key} className="bg-card p-6 rounded-lg shadow-xs card-hover">
+                    <div key={key} className="bg-card p-6 rounded-lg shadow-xs card-hover" >
                         <div className="text-left mb-4">
                             <h3 className="font-semibold text-lg"> {skill.name}</h3>
                         </div>

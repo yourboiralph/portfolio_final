@@ -1,10 +1,17 @@
 import { Facebook, Linkedin, Mail, MapPin, Phone, Send, Twitch, Twitter } from "lucide-react"
 import {cn} from "@/lib/utils"
 import emailjs from "@emailjs/browser"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { toast } from "react-toastify"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const ContactSection = () => {
+
+    const leftRef = useRef(null)
+    const rightRef = useRef(null)
 
     const formValues = useRef()
 
@@ -17,6 +24,40 @@ export const ContactSection = () => {
             toast.error(error)
         })
     }
+
+    useEffect(()=> {
+        const left = leftRef.current
+        const right = rightRef.current
+
+        gsap.fromTo(left,
+            { x: -100, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: left,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        )
+        gsap.fromTo(right,
+            { x: 100, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: left,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        )
+    }, [])
     return <section id="contact" className="py-24 px-4 relative bg-secondary/30">
         <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Get In <span className="text-primary">Touch</span></h2>
@@ -26,7 +67,7 @@ export const ContactSection = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="space-y-8">
+                <div className="space-y-8" ref={leftRef}>
                     <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
                     <div className="space-y-6 justify-center">
                         <div className="flex items-start space-x-4">
@@ -76,7 +117,7 @@ export const ContactSection = () => {
                     </div>
                 </div>
 
-                <div className="bg-card p-8 rounded-lg shadow-xs">
+                <div className="bg-card p-8 rounded-lg shadow-xs" ref={rightRef}>
                     <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
                     <form className="space-y-6" ref={formValues} onSubmit={SendEmail}>

@@ -1,4 +1,9 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react"
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
     {
@@ -22,6 +27,29 @@ const projects = [
 
 export const ProjectsSection = () => {
 
+    const cardsRef = useRef([]);
+
+    useEffect(() => {
+        cardsRef.current.forEach((card) => {
+        gsap.fromTo(
+            card,
+            { y: 50, opacity: 0 },
+            {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse",
+            },
+            }
+        );
+        });
+    }, []);
+
     return <section id="projects" className="py-25 px-4 relative">
         <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center">Featured <span className="text-primary">Projects</span></h2>
@@ -33,7 +61,7 @@ export const ProjectsSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 {projects.map((project, key) => (
-                    <div key={key} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover">
+                    <div key={key} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover" ref={(el) => (cardsRef.current[key] = el)}>
                         <div className="h-48 overflow-hidden">
                             <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                         </div>
