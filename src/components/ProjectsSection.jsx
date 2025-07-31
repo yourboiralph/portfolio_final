@@ -33,16 +33,15 @@ export const ProjectsSection = () => {
         cardsRef.current.forEach((card) => {
         gsap.fromTo(
             card,
-            { y: 50, opacity: 0 },
+            { y: -70, opacity: 0 },
             {
             y: 0,
             opacity: 1,
-            duration: 1,
-            ease: "power2.out",
+            duration: .5,
             scrollTrigger: {
                 trigger: card,
-                start: "top 80%",
-                end: "bottom 20%",
+                start: "top 90%",
+                end: "bottom 10%",
                 toggleActions: "play none none reverse",
             },
             }

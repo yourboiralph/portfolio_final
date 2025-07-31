@@ -15,16 +15,18 @@ export const AutomationsSection = () => {
 
     const slides = [
         {
-            picture: "projects/thumbnail.jpg",
-            link: "https://www.youtube.com/embed/XFjpJ7UPpSk?si=9eKhUPm5CqxFjeCV"
+            picture: "projects/tgtocrm.png",
+            link: "https://www.youtube.com/embed/QbZSe7w6MXA?si=bkFJlmOZCqGe8-5X"
         },
         {
-            picture: "projects/thumbnail.jpg",
-            link: "https://www.youtube.com/embed/XFjpJ7UPpSk?si=9eKhUPm5CqxFjeCV"
+            picture: "projects/scraper.png",
+            link: "https://www.youtube.com/embed/I-AzIB9W1LM?si=2pmros-5YRK3GI5L"
+            
         },
         {
-            picture: "projects/thumbnail.jpg",
-            link: "https://www.youtube.com/embed/XFjpJ7UPpSk?si=9eKhUPm5CqxFjeCV"
+            picture: "projects/vfxad.png",
+            link: "https://www.youtube.com/embed/BjLIkqfIFnY?si=QysXi9fbOnnTLHgN"
+            
         }
     ]
 
